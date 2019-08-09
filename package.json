@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "nodemon src/index.ts --ext ts,graphql,gql --exec ts-node-dev",
-		"db-seed": "ts-node-dev src/tasks/db/seed.ts"
+		"db-seed": "ts-node-dev src/tasks/db/seed.ts",
+		"format": "prettier --write \"**/*.+(js|ts|md|mdx|graphql|gql|json|yml|yaml)\""
 	},
 	"devDependencies": {
 		"@types/graphql": "^14.2.3",

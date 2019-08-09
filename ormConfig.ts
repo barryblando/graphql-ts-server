@@ -1,6 +1,6 @@
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions'
 
-require('dotenv').config({ debug: true });
+require('dotenv').config({ debug: true })
 
 const typeOrmConfig: PostgresConnectionOptions = {
 	type: 'postgres',
@@ -20,6 +20,6 @@ const typeOrmConfig: PostgresConnectionOptions = {
 		migrationsDir: 'src/migration',
 		subscribersDir: 'src/subscriber',
 	},
-};
+}
 
-export { typeOrmConfig };
+export { typeOrmConfig }
