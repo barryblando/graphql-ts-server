@@ -8,22 +8,25 @@
 		"noImplicitAny": true,
 		"moduleResolution": "node",
 		"sourceMap": true,
-		"outDir": "build/compiled",
+		"outDir": "build",
+		"rootDir": "src",
 		"baseUrl": ".",
-		"types": ["node"],
+		"types": ["node", "jest"],
 		"composite": true,
 		"removeComments": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		// "noUnusedParameters": true,
+		"noUnusedParameters": false,
 		"noUnusedLocals": true,
 		"forceConsistentCasingInFileNames": true,
 		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"paths": {
-			"*": ["node_modules/*", "src/@types/*"]
-		}
+		"experimentalDecorators": true
 	},
-	"include": ["src/**/*", "ormConfig.ts"],
-	"exclude": ["tmp", "temp", "build", "node_modules"]
+	"exclude": [
+		"tmp",
+		"temp",
+		"build",
+		"node_modules",
+		"src/modules/**/*.+(spec|test).ts"
+	]
 }

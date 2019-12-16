@@ -1,0 +1,6 @@
+{
+	"linters": {
+		"*.@(js|ts)": ["eslint", "jest --coverage --findRelatedTests"],
+		"*.@(js|ts|graphql|gql|json|yml|yaml)": ["prettier --write", "git add"]
+	}
+}

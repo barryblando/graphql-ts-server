@@ -2,7 +2,7 @@ import 'reflect-metadata'
 
 import { createConnection, Connection } from 'typeorm'
 
-import { typeOrmConfig } from '../../ormConfig'
+import { typeOrmConfig } from '../../ormconfig'
 import { User } from '../../entity/User'
 
 const startServer = async () => {
