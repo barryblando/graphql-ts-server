@@ -1,4 +1,4 @@
-import { ProfilePictureResolver } from './../modules/user/ProfilePicture'
+import { FileUploadResolver } from '../modules/user/FileUpload'
 import { buildSchema } from 'type-graphql'
 import { authChecker } from './authChecker'
 import { AdminResolver } from './../modules/admin/Admin'
@@ -23,7 +23,7 @@ export const createSchema = () =>
 			LogoutResolver,
 			MeResolver,
 			AdminResolver,
-			ProfilePictureResolver,
+			FileUploadResolver,
 		],
 		// validate: true,
 		authChecker,
