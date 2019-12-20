@@ -7,17 +7,6 @@ import { createWriteStream } from 'fs'
 
 @Resolver()
 export class FileUploadResolver {
-	// @Mutation(() => Boolean)
-	// async singleUpload(@Arg('file', () => GraphQLUpload) { createReadStream, filename }: Upload): Promise<boolean> {
-	// 	// const destinationPath = path.join(os.tmpdir(), filename)
-	// 	return await new Promise((resolve, reject) =>
-	// 		createReadStream()
-	// 			.pipe(createWriteStream(path.join(__dirname, '../../../images', filename)))
-	// 			.on('error', () => reject(false))
-	// 			.on('close', () => resolve(true)),
-	// 	)
-	// }
-
 	@Mutation(() => [Boolean])
 	async fileUpload(@Arg('files', () => GraphQLUpload) files: FileUpload): Promise<boolean[]> {
 		let readableStreams: FileUpload[] = []
