@@ -3,8 +3,22 @@
 Steps to run this repo:
 
 1. Run `yarn install` command
-2. Setup database settings inside `ormConfig.ts` file
-3. Run `yarn start` command
+2. Setup database settings inside `ormconfig.ts` file
+3. Setup .env
+
+   ```env
+   TYPEORM_HOST=
+   TYPEORM_USERNAME=
+   TYPEORM_PASSWORD=
+   TYPEORM_DATABASE=
+   DEBUG=true
+   ACCESS_TOKEN_SECRET=
+   REFRESH_TOKEN_SECRET=
+   SESSION_SECRET=
+   FRONTEND_URL=http://localhost:3000
+   ```
+
+4. Run `yarn start` command
 
 ## Schema or Code First
 
@@ -39,7 +53,7 @@ Steps to run this repo:
   - [Getting Started With PostgreSQL 11 on Ubuntu 18.04](https://pgdash.io/blog/postgres-11-getting-started.html)
   - [Create and drop roles in PostgreSQL](https://support.rackspace.com/how-to/postgresql-creating-and-dropping-roles/)
 
-## To be Implemented
+## Implemented
 
 - Register - Done
 - Validation - Done
@@ -53,7 +67,7 @@ Steps to run this repo:
 - Pagination - Done
 - Rate Limiting - Done
 - Higher Order Resolver - 🏃
-- File/Image Upload - Done (Cloudinary)
+- File/Image Multi-upload - Done - [Minor Issues](https://github.com/MichalLytek/type-graphql/issues/37)
 - Query Complexity - Done
 - Time Performance GraphQL Resolver - 🏃
 - Locking Accounts - 🏃
