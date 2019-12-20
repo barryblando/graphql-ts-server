@@ -14,7 +14,7 @@ export const isAuth: MiddlewareFn<MyContext> = async ({ context }, next) => {
 	try {
 		const token = authorization.split(' ')[1]
 		const payload = verify(token, process.env.ACCESS_TOKEN_SECRET) // decoded Token
-		context.payload = payload as { userId: string } // store userId in context payload
+		context.payload = payload as { userId: number } // store userId in context payload
 	} catch (err) {
 		const error = new Error()
 		error.name = err.name

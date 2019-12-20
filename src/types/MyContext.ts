@@ -2,7 +2,7 @@ import express from 'express'
 
 interface Session {
 	session?: {
-		userId?: string
+		userId?: number
 		destroy(callback: (err: any) => void): void
 	}
 }
@@ -19,5 +19,5 @@ interface IP {
 export interface MyContext {
 	req: express.Request & Session & IP & Headers
 	res: express.Response
-	payload?: { userId: string }
+	payload: { userId: number }
 }

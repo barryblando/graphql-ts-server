@@ -47,7 +47,7 @@ export class ChangePasswordResolver {
 		await redis.del(forgotPasswordPrefix + token)
 
 		// update user password
-		await User.update({ id: userId }, { password })
+		await User.update({ id: parseInt(userId) }, { password })
 
 		// login automatically the user
 		// ctx.req.session.userId = user.id - session
@@ -56,7 +56,7 @@ export class ChangePasswordResolver {
 		// whenever '/refresh-token' route called it won't generate new access token to current logged-in devices
 		await getConnection()
 			.getRepository(User)
-			.increment({ id: userId }, 'tokenVersion', 1)
+			.increment({ id: parseInt(userId) }, 'tokenVersion', 1)
 
 		// create and send new refresh token
 		sendRefreshToken(res, createRefreshToken(user))

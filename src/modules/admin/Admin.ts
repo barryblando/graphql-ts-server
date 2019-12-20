@@ -1,6 +1,6 @@
 import { PaginatedUserResponse } from '../../graphql-types/PaginatedUserResponse'
 import { isAuth } from './../middleware/isAuth'
-import { Resolver, Query, UseMiddleware, Mutation, Arg } from 'type-graphql'
+import { Resolver, Query, UseMiddleware, Mutation, Arg, Authorized } from 'type-graphql'
 import { User } from '../../entity/User'
 import { getConnection } from 'typeorm'
 
@@ -8,7 +8,7 @@ import { getConnection } from 'typeorm'
 export class AdminResolver {
 	@Query(returns => PaginatedUserResponse, { nullable: true })
 	@UseMiddleware(isAuth)
-	// @Authorized('ADMIN')
+	@Authorized('ADMIN')
 	async users(@Arg('page', () => Number, { nullable: true }) page = 1): Promise<PaginatedUserResponse> {
 		// https://github.com/typeorm/typeorm/blob/master/sample/sample7-pagination/app.ts
 		const [results, total] = await User.findAndCount({ order: { createdAt: 'DESC' }, take: 2, skip: (page - 1) * 2 })
@@ -22,7 +22,7 @@ export class AdminResolver {
 	async revokeRefreshTokenForUser(@Arg('userId') userId: string) {
 		await getConnection()
 			.getRepository(User)
-			.increment({ id: userId }, 'tokenVersion', 1)
+			.increment({ id: parseInt(userId) }, 'tokenVersion', 1)
 		return true
 	}
 }

@@ -29,8 +29,8 @@ enum Roles {
 @Entity('users') // you can set alternative table name by doing @Entity("users")
 export class User extends BaseEntity {
 	@Field(type => ID) // Field allows us to expose this property of entity into graphql object schema
-	@PrimaryGeneratedColumn('uuid')
-	id: string
+	@PrimaryGeneratedColumn()
+	id: number
 
 	// https://typeorm.io/#/entities/column-types-for-postgres
 
