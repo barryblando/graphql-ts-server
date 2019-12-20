@@ -6,9 +6,11 @@ import { MyContext } from '../../types/MyContext'
 export const rateLimit: (limitForAnonUser?: number, limitForUser?: number) => MiddlewareFn<MyContext> = (
 	limitForAnonUser = 5, // limit for anonymous users
 	limitForUser = 100, // limit for regular users
-) => async ({ context: { req }, info }, next) => {
-	const isAnon = !req.session.userId
-	const visitorKey = `rate-limit:${info.fieldName}:${isAnon ? req.ip : req.session.userId}`
+) => async ({ context, info }, next) => {
+	const isAnon = !context?.payload?.userId
+	const visitorKey = `rate-limit:${info.fieldName}:${isAnon ? context.req.ip : context.payload.userId}`
+	// const isAnon = !req.session.userId
+	// const visitorKey = `rate-limit:${info.fieldName}:${isAnon ? req.ip : req.session.userId}`
 
 	// keep track of number of times the user has request a resolver using redis increment
 	const current = await redis.incr(visitorKey)
