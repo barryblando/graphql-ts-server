@@ -35,11 +35,11 @@ export class User extends BaseEntity {
 	// https://typeorm.io/#/entities/column-types-for-postgres
 
 	@Field()
-	@Column('varchar', { length: 128 })
+	@Column('varchar', { length: 128, name: 'first_name' })
 	firstName: string
 
 	@Field()
-	@Column('varchar', { length: 128 })
+	@Column('varchar', { length: 128, name: 'last_name' })
 	lastName: string
 
 	@Field()
@@ -57,11 +57,11 @@ export class User extends BaseEntity {
 
 	@Column('boolean', { default: false }) locked: boolean
 
-	@Column('int', { default: 0 })
+	@Column('int', { default: 0, name: 'token_version' })
 	tokenVersion: number
 
-	// We can also put a field w/o putting in on the database using column if it is a simple field to query for User
-	// and when it comes to relational querying you may as well put this on a separate Resolver,
+	// We can also put a field w/o putting in on the database column if it is a simple field to query for User
+	// and when it comes to relational querying you may as well put this on a separate Resolver Class,
 	// About query complexity let's say this field causes high workload we need set its complexity points so whenever users
 	// query this field 3 times, 3 x 3 = 9, if the maximum query complexity points is 8 then we should minimize querying this field
 	@Field({ complexity: 3 })
@@ -74,8 +74,8 @@ export class User extends BaseEntity {
 	// @OneToMany(() => Post, post => post.user)
 	// posts: Post[]
 
-	@CreateDateColumn() createdAt: string
-	@UpdateDateColumn() updatedAt: string
+	@CreateDateColumn({ name: 'created_at' }) createdAt: string
+	@UpdateDateColumn({ name: 'updated_at' }) updatedAt: string
 
 	hashPassword(password = ''): Promise<string> {
 		return bcrypt.hash(password, 12)
