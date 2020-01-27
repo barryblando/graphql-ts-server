@@ -1,9 +1,9 @@
-import { User } from './../../../entity/User'
 import { Connection } from 'typeorm'
 import faker from 'faker'
-import { redis } from './../../../redis'
-import { gCall } from './../../../test-utils/gCall'
-import { testConn } from './../../../test-utils/testConn'
+import { redis } from '../../../redis'
+import { User } from '../../../entity/User'
+import { gCall } from '../../../test-utils/gCall'
+import { testConn } from '../../../test-utils/testConn'
 
 let conn: Connection
 

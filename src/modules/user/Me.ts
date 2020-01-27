@@ -1,4 +1,4 @@
-import { isAuth } from './../middleware/isAuth'
+import { isAuth } from '../middleware/isAuth'
 import { Resolver, Query, Ctx, UseMiddleware } from 'type-graphql'
 import { User } from '../../entity/User'
 import { MyContext } from '../../types/MyContext'

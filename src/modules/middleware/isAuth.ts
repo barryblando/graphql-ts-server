@@ -8,7 +8,7 @@ export const isAuth: MiddlewareFn<MyContext> = async ({ context }, next) => {
 	const authorization = context.req.headers['authorization'] // bearer token
 
 	if (!authorization) {
-		throw new AuthenticationError('not authenticated')
+		throw new AuthenticationError('Not authenticated')
 	}
 
 	try {

@@ -1,11 +1,10 @@
-import 'dotenv/config'
-import { createAccessToken } from './../../../utils/authToken'
-import { User } from './../../../entity/User'
 import { Connection } from 'typeorm'
 import faker from 'faker'
-import { redis } from './../../../redis'
-import { gCall } from './../../../test-utils/gCall'
-import { testConn } from './../../../test-utils/testConn'
+import { createAccessToken } from '../../../utils/authToken'
+import { User } from '../../../entity/User'
+import { redis } from '../../../redis'
+import { gCall } from '../../../test-utils/gCall'
+import { testConn } from '../../../test-utils/testConn'
 
 let conn: Connection
 

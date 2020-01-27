@@ -16,7 +16,7 @@ let schema: GraphQLSchema
 
 export const gCall = async ({ source, variableValues, accessToken }: Options) => {
 	if (!schema) {
-		// INFO: In order to test the query, mutation, or resolvers from type-graphql
+		// INFO: In order to test the query, mutation resolvers from type-graphql
 		// we need to create separate graphql schema and make separate graphql calls
 		schema = await createSchema()
 	}

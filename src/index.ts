@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import 'reflect-metadata'
 import { createSchema } from './utils/createSchema'
 import { createAccessToken, createRefreshToken } from './utils/authToken'
@@ -57,7 +56,7 @@ const startServer = async (): Promise<void> => {
 	// )
 	// #endregion
 
-	app.use('/refresh_token', cookieParser()) // so it only runs on refresh token route that need it
+	app.use('/refresh_token', cookieParser()) // so it only runs on refresh_token route that need it
 
 	// Handle refresh token
 	app.post('/refresh_token', async (req, res) => {
@@ -86,6 +85,7 @@ const startServer = async (): Promise<void> => {
 			return res.send({ ok: false, accessToken: '' })
 		}
 
+		// if token version change
 		if (user.tokenVersion !== payload.tokenVersion) {
 			return res.send({ ok: false, accessToken: '' })
 		}

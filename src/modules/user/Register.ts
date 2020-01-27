@@ -13,7 +13,7 @@ export class RegisterResolver {
 	// 	return `${parent.firstName} ${parent.lastName}`
 	// }
 
-	@Mutation(returns => User, { description: 'Register reasonably' })
+	@Mutation(returns => User, { description: 'Register reasonably', nullable: true })
 	@UseMiddleware(rateLimit()) // add rate-limiting to prevent spamming, keep track of that person's ip
 	async register(
 		@Arg('data', { validate: true }) { firstName, lastName, email, password }: RegisterInput,
