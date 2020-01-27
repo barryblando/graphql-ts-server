@@ -77,3 +77,4 @@ Steps to run this repo:
 
 - [The Problems of "Schema-First" GraphQL Server Development](https://www.prisma.io/blog/the-problems-of-schema-first-graphql-development-x1mn4cb0tyl3)
 - [graphql-upload with cloudinary](https://support.cloudinary.com/hc/en-us/community/posts/360031762832-graphql-upload-with-cloudinary)
+- [Fast and maintainable patterns for fetching from a database](https://sophiebits.com/2020/01/01/fast-maintainable-db-patterns.html)
