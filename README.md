@@ -73,6 +73,10 @@ Steps to run this repo:
 - Locking Accounts - 🏃
 - JWT Authentication (Access/Refresh Tokens, Revoking) - Done
 
+## Plans
+
+- Will try to migrate to Rust
+
 ## Sources
 
 - [The Problems of "Schema-First" GraphQL Server Development](https://www.prisma.io/blog/the-problems-of-schema-first-graphql-development-x1mn4cb0tyl3)
