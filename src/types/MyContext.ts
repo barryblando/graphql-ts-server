@@ -8,7 +8,10 @@ interface Session {
 }
 
 interface Headers {
-	headers?: { authorization?: string }
+	headers?: {
+		[propName: string]: any
+		authorization?: string
+	}
 }
 
 // interface to use for rate-limiting
