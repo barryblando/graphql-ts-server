@@ -5,7 +5,7 @@ import { MyContext } from '../../types/MyContext'
 
 @Resolver()
 export class MeResolver {
-	@Query(returns => User, { nullable: true, complexity: 5 })
+	@Query(returns => User, { nullable: true, complexity: 2 })
 	@UseMiddleware(isAuth)
 	async me(@Ctx() { payload }: MyContext): Promise<User> {
 		// if (!ctx.req.session.userId) {
