@@ -29,11 +29,11 @@ const startServer = async (): Promise<void> => {
 	// CORS is needed to perform HTTP requests from another domain than your server domain to your server.
 	// Otherwise you may run into cross-origin resource sharing errors for your GraphQL server.
 
-	// NOTE: // Additional middleware can be mounted at this point to run before getting into resolvers.
+	// NOTE: Additional middleware can be mounted at this point to run before getting into resolvers.
 	app.use(
 		cors({
-			credentials: true,
 			origin: process.env.FRONTEND_URL,
+			credentials: true, // send back cookie
 		}),
 	)
 
@@ -165,6 +165,7 @@ const startServer = async (): Promise<void> => {
 	server.applyMiddleware({
 		app, // app is from an existing express app
 		path: '/graphql',
+		cors: false, // set apollo cors false, cause we include third party middleware 'cors'
 	})
 
 	app.listen(process.env.PORT || 4000, (): void => {
