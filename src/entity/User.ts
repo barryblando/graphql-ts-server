@@ -16,7 +16,7 @@ import { ObjectType, Field, ID, Root, Authorized } from 'type-graphql'
 // INFO: BaseEntity allows as to access the underlying prototype methods provided by typeorm 'active record pattern' (i.e User.create|find)
 // INFO: ObjectType allows us to create graphql object type from a class entity
 
-enum Roles {
+export enum Roles {
 	ADMIN = 'ADMIN',
 	USER = 'USER',
 	ITEM_CREATE = 'ITEM_CREATE',
@@ -28,7 +28,8 @@ enum Roles {
 @ObjectType()
 @Entity('users') // you can set alternative table name by doing @Entity("users")
 export class User extends BaseEntity {
-	@Field(type => ID) // Field allows us to expose this property of entity into graphql object schema
+	// Field allows us to expose this property of entity into graphql object schema
+	@Field(() => ID)
 	@PrimaryGeneratedColumn()
 	id: number
 
@@ -49,7 +50,7 @@ export class User extends BaseEntity {
 	@Column('text') password: string
 
 	@Authorized('ADMIN') // Only admin can query this field
-	@Field(type => [String])
+	@Field(() => [String])
 	@Column('enum', { enum: Roles, array: true, default: [Roles.USER] })
 	roles: Roles[]
 
@@ -60,7 +61,7 @@ export class User extends BaseEntity {
 	@Column('int', { default: 0, name: 'token_version' })
 	tokenVersion: number
 
-	// We can also put a field w/o putting in on the database column if it is a simple field to query for User
+	// We can also put a field w/o putting it on the database column if it is a simple field to query for User
 	// and when it comes to relational querying you may as well put this on a separate Resolver Class,
 	// About query complexity let's say this field causes high workload we need set its complexity points so whenever users
 	// query this field 3 times, 3 x 3 = 9, if the maximum query complexity points is 8 then we should minimize querying this field

@@ -1,4 +1,4 @@
-import { sendRefreshToken } from './../../utils/sendRefreshToken'
+import { sendRefreshToken } from '../../utils/sendRefreshToken'
 import { createAccessToken, createRefreshToken } from './../../utils/authToken'
 import { getConnection } from 'typeorm'
 import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
@@ -6,15 +6,15 @@ import { User } from '../../entity/User'
 import { redis } from '../../redis'
 import { forgotPasswordPrefix } from '../../constants'
 import { ChangePasswordInput } from './changePassword/ChangePasswordInput'
-import { MyContext } from '../../types/MyContext'
+import { IContext } from '../../types/MyContext'
 import { UserResponse } from '../../graphql-types/UserResponse'
 
 @Resolver()
 export class ChangePasswordResolver {
-	@Mutation(returns => UserResponse)
+	@Mutation(() => UserResponse)
 	async changePassword(
 		@Arg('data') { token, password }: ChangePasswordInput,
-		@Ctx() { res }: MyContext,
+		@Ctx() { res }: IContext,
 	): Promise<UserResponse> {
 		// get the user id from redis
 		const userId = await redis.get(forgotPasswordPrefix + token)

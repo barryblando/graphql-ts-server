@@ -18,7 +18,7 @@ export class AdminResolver {
 	// 	}
 	//
 
-	@Query(returns => PaginatedUserResponse, { nullable: true })
+	@Query(() => PaginatedUserResponse, { nullable: true })
 	async users(@Arg('page', () => Number, { nullable: true }) page = 1): Promise<PaginatedUserResponse> {
 		// https://stackoverflow.com/questions/53922503/how-to-implement-pagination-in-nestjs-with-typeorm
 		const [results, total] = await User.findAndCount({ order: { createdAt: 'DESC' }, take: 2, skip: (page - 1) * 2 })
@@ -28,7 +28,7 @@ export class AdminResolver {
 		}
 	}
 
-	@Mutation(returns => Boolean)
+	@Mutation(() => Boolean)
 	async revokeRefreshTokenForUser(@Arg('userId') userId: string) {
 		await getConnection()
 			.getRepository(User)

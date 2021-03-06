@@ -18,7 +18,7 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
 		sourceType: 'module', // Allows for the use of imports
-		project: './tsconfig.eslint.json',
+		project: './tsconfig.eslint.json', // Well use this eslint tsconfig to lint tests files
 		tsConfigRootDir: '.'
 	},
 	settings: {
@@ -30,8 +30,10 @@ module.exports = {
 		// Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
 		// e.g. "@typescript-eslint/explicit-function-return-type": "off",
 		'no-unused-vars': 0,
+		'@typescript-eslint/explicit-module-boundary-types': 'off',
 		'@typescript-eslint/explicit-function-return-type': 0,
 		'@typescript-eslint/explicit-member-accessibility': 0,
+    // '@typescript-eslint/naming-convention': false,
 		'@typescript-eslint/no-var-requires': 0,
 		'@typescript-eslint/no-non-null-assertion': 0,
 		'@typescript-eslint/no-unused-vars': [
@@ -39,15 +41,14 @@ module.exports = {
 			{
 				args: 'all',
 				ignoreRestSiblings: false,
-				argsIgnorePattern: '^_|^args|^parent|^ctx|^info|^type|^target|^returns|^req|^res',
+				argsIgnorePattern: '^_|^root|^args|^parent|^ctx|^context|^info|^type|^target|^returns|^req|^res',
 			},
 		],
-		'@typescript-eslint/camelcase': [
+		"@typescript-eslint/naming-convention": [
 			"error",
-			{
-				properties: "never"
-			}
-		],
+			{ "selector": "variableLike", "format": ["camelCase"] },
+			{ "selector": "interface", "format": ["PascalCase"], prefix: ["I"] },
+    ],
 		'@typescript-eslint/interface-name-prefix': [0, { "prefixWithI": "always" }],
 		'prettier/prettier': [
 			'error',

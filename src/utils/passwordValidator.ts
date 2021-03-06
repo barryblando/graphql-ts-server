@@ -1,9 +1,9 @@
-import { PasswordConstraint } from '../types/PasswordConstraint'
+import { IPasswordConstraint } from '../types/PasswordConstraint'
 
 export const passwordValidator = (
-	constraint: PasswordConstraint,
+	constraint: IPasswordConstraint,
 	value: string,
-): { passed: boolean; message: string } => {
+): { passed: boolean; message: string | null } => {
 	// /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,20}$/
 	if (constraint.upperCase) {
 		if (!/^(?=.*[A-Z])/.test(value)) {

@@ -1,9 +1,9 @@
 import { MiddlewareFn } from 'type-graphql'
 import { redis } from '../../redis'
-import { MyContext } from '../../types/MyContext'
+import { IContext } from '../../types/MyContext'
 // import { oneDay } from '../../constants'
 
-export const rateLimit: (limitForAnonUser?: number, limitForUser?: number) => MiddlewareFn<MyContext> = (
+export const rateLimit: (limitForAnonUser?: number, limitForUser?: number) => MiddlewareFn<IContext> = (
 	limitForAnonUser = 5, // limit for anonymous users
 	limitForUser = 100, // limit for regular users
 ) => async ({ context, info }, next) => {

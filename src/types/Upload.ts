@@ -1,6 +1,6 @@
 import { Stream } from 'stream'
 
-export interface Upload {
+export interface IUpload {
 	filename: string
 	mimetype: string
 	encoding: string

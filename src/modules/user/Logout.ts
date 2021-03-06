@@ -1,13 +1,13 @@
 import { Resolver, Mutation, Ctx, UseMiddleware } from 'type-graphql'
-import { MyContext } from '../../types/MyContext'
+import { IContext } from '../../types/MyContext'
 import { isAuth } from '../middleware/isAuth'
 import { sendRefreshToken } from '../../utils/sendRefreshToken'
 
 @Resolver()
 export class LogoutResolver {
-	@Mutation(returns => Boolean)
+	@Mutation(() => Boolean)
 	@UseMiddleware(isAuth)
-	async logout(@Ctx() { res }: MyContext): Promise<boolean> {
+	async logout(@Ctx() { res }: IContext): Promise<boolean> {
 		// return new Promise((resolve, reject) =>
 		// 	ctx.req.session.destroy(err => {
 		// 		if (err) {

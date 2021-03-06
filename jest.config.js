@@ -8,4 +8,9 @@ module.exports = {
   "transform": {
     "^.+\\.(ts)$": "ts-jest"
   },
+	globals: {
+		'ts-jest': {
+			tsConfig: 'tsconfig.jest.json'
+		}
+	}
 };

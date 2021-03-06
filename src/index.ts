@@ -1,3 +1,4 @@
+require('dotenv').config()
 import 'reflect-metadata'
 import { createSchema } from './utils/createSchema'
 import { createAccessToken, createRefreshToken } from './utils/authToken'
@@ -13,7 +14,7 @@ import { getComplexity, simpleEstimator, fieldExtensionsEstimator } from 'graphq
 // import connectRedis from 'connect-redis'
 // import { redis } from './redis'
 
-import { typeOrmConfig } from './ormconfig'
+import { typeOrmConfig } from './utils/ormconfig'
 import { User } from './entity/User'
 import { sendRefreshToken } from './utils/sendRefreshToken'
 import { separateOperations } from 'graphql'
@@ -43,7 +44,7 @@ const startServer = async (): Promise<void> => {
 	// 		store: new RedisStore({
 	// 			client: redis,
 	// 		}),
-	// 		name: 'qid',
+	// 		name: 'sid',
 	// 		secret: process.env.SESSION_SECRET || 'ww2wde1q2321',
 	// 		resave: false,
 	// 		saveUninitialized: false,
@@ -71,7 +72,7 @@ const startServer = async (): Promise<void> => {
 		let payload: any = null
 		try {
 			// make sure refresh token is still valid, otherwise revoke refresh token (when user change his/her password)
-			payload = verify(token, process.env.REFRESH_TOKEN_SECRET)
+			payload = verify(token, process.env.REFRESH_TOKEN_SECRET!)
 		} catch (err) {
 			console.log({ error: err.name, message: err.message })
 			return res.send({ ok: false, accessToken: '' })
@@ -96,10 +97,17 @@ const startServer = async (): Promise<void> => {
 		return res.send({ ok: true, accessToken: createAccessToken(user) })
 	})
 
-	try {
-		await createConnection(typeOrmConfig)
-	} catch (err) {
-		throw new Error(err)
+	let retries = 5
+	while (retries) {
+		try {
+			await createConnection(typeOrmConfig)
+			break
+		} catch (err) {
+			console.log(err)
+			retries -= 1
+			console.log(`retries left: ${retries}`)
+			await new Promise((res) => setTimeout(res, 5000))
+		}
 	}
 
 	const schema = await createSchema()
@@ -173,4 +181,4 @@ const startServer = async (): Promise<void> => {
 	})
 }
 
-startServer().catch(err => console.log(err))
+startServer().catch((err) => console.log(err))

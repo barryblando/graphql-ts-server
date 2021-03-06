@@ -1,4 +1,4 @@
-export interface PasswordConstraint {
+export interface IPasswordConstraint {
 	upperCase?: boolean
 	lowerCase?: boolean
 	digit?: boolean

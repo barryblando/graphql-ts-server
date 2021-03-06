@@ -1,11 +1,11 @@
 import { InputType, Field } from 'type-graphql'
 import { Length, IsEmail } from 'class-validator'
-import { IsEmailAlreadyExist } from './isEmailAlreadyExist'
-import { PasswordMixin } from '../../shared/PasswordMixin'
+import { isEmailAlreadyExist } from './isEmailAlreadyExist'
+import { passwordMixin } from '../../shared/PasswordMixin'
 
 // INFO: Here we create Input Type
 @InputType()
-export class RegisterInput extends PasswordMixin(class {}) {
+export class RegisterInput extends passwordMixin(class {}) {
 	@Field()
 	@Length(1, 255)
 	firstName: string
@@ -16,6 +16,6 @@ export class RegisterInput extends PasswordMixin(class {}) {
 
 	@Field()
 	@IsEmail()
-	@IsEmailAlreadyExist({ message: 'Email $value already exists.' })
+	@isEmailAlreadyExist({ message: 'Email $value already exists.' })
 	email: string
 }

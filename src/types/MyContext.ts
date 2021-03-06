@@ -1,13 +1,13 @@
 import express from 'express'
 
-interface Session {
+interface ISession {
 	session?: {
 		userId?: number
 		destroy(callback: (err: any) => void): void
 	}
 }
 
-interface Headers {
+interface IHeaders {
 	headers?: {
 		[propName: string]: any
 		authorization?: string
@@ -19,8 +19,8 @@ interface IP {
 	ip?: string
 }
 
-export interface MyContext {
-	req: express.Request & Session & IP & Headers
+export interface IContext {
+	req: express.Request & ISession & IP & IHeaders
 	res: express.Response
-	payload: { userId: number }
+	payload: { userId: number; tokenVersion?: number }
 }

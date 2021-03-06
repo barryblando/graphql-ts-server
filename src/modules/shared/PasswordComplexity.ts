@@ -1,9 +1,9 @@
 import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator'
-import { PasswordConstraint } from '../../types/PasswordConstraint'
+import { IPasswordConstraint } from '../../types/PasswordConstraint'
 import { passwordValidator } from '../../utils/passwordValidator'
 
-export function PasswordComplexity(property: PasswordConstraint, validationOptions?: ValidationOptions) {
-	return function(object: Record<string, any>, propertyName: string) {
+export function passwordComplexity(property: IPasswordConstraint, validationOptions?: ValidationOptions) {
+	return function (object: Record<string, any>, propertyName: string) {
 		registerDecorator({
 			name: 'PasswordComplexity',
 			target: object.constructor,

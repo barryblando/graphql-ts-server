@@ -1,9 +1,9 @@
 import { AuthChecker } from 'type-graphql'
 import { User } from '../entity/User'
-import { MyContext } from '../types/MyContext'
+import { IContext } from '../types/MyContext'
 import { verify } from 'jsonwebtoken'
 
-export const authChecker: AuthChecker<MyContext> = async ({ context }, roles): Promise<boolean> => {
+export const authChecker: AuthChecker<IContext> = async ({ context }, roles): Promise<boolean> => {
 	const authorization = context.req.headers['authorization'] // bearer token
 
 	if (!authorization) {
@@ -30,7 +30,7 @@ export const authChecker: AuthChecker<MyContext> = async ({ context }, roles): P
 	// const user = await User.findOne(req.session.userId) - session
 	const user = await User.findOne(payload.userId)
 	// and check his permission in db against `roles` argument
-	const matchRoles = user.roles.filter(roleUserHave => roles.includes(roleUserHave))
+	const matchRoles = user.roles.filter((roleUserHave) => roles.includes(roleUserHave))
 
 	if (!matchRoles.length) {
 		throw new Error(`You do not have sufficient permissions: ${roles}, You Have: ${user.roles}`)

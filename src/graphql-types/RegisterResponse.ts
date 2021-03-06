@@ -6,9 +6,9 @@ import { IResponse } from './interfaces/Response'
 export class RegisterResponse implements IResponse {
 	user?: User
 
-	@Field(type => String)
+	@Field(() => String)
 	messageId: string
 
-	@Field(type => String)
+	@Field(() => String)
 	messageUrl: string | boolean
 }

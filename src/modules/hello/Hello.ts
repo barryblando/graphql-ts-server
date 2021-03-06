@@ -3,7 +3,7 @@ import { isAuth } from '../middleware/isAuth'
 
 @Resolver()
 export class HelloResolver {
-	@Query(returns => String)
+	@Query(() => String)
 	@UseMiddleware(isAuth)
 	hello() {
 		return 'Hello World!'

@@ -77,6 +77,16 @@ Steps to run this repo:
 
 - Will try to migrate to Rust
 
+## Tests
+
+```json
+    // add this back if file upload won't work
+    "resolutions": {
+      "**/**/fs-capacitor": "^6.2.0",
+      "**/graphql-upload": "^11.0.0"
+    }
+```
+
 ## Sources
 
 - [The Problems of "Schema-First" GraphQL Server Development](https://www.prisma.io/blog/the-problems-of-schema-first-graphql-development-x1mn4cb0tyl3)

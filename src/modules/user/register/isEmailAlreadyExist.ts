@@ -19,7 +19,7 @@ export class IsEmailAlreadyExistConstraint implements ValidatorConstraintInterfa
 }
 
 // INFO: Here we create custom validator using class-validator
-export function IsEmailAlreadyExist(validationOptions?: ValidationOptions) {
+export function isEmailAlreadyExist(validationOptions?: ValidationOptions) {
 	return function(object: Object, propertyName: string) { // eslint-disable-line
 		registerDecorator({
 			target: object.constructor,

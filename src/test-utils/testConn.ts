@@ -5,7 +5,7 @@ export const testConn = (drop = false) => {
 		type: 'postgres',
 		host: '127.0.0.1',
 		port: 5432,
-		username: 'barryblando',
+		username: 'bblando0x316',
 		password: 'postgres',
 		database: 'testdb-dev',
 		synchronize: drop,

@@ -6,7 +6,9 @@ import { sendEmail } from '../../utils/sendEmail'
 import { createConfirmationUrl } from '../../utils/createConfirmationUrl'
 import { RegisterResponse } from '../../graphql-types/RegisterResponse'
 
-// Specifying User in Resolver parameter so we can know where this name field resolver are resolving for so its resolving for User
+// https://typegraphql.com/docs/resolvers.html
+// Specifying User in Resolver parameter so we can know where this `name` field resolver are resolving by, so its resolving for User
+// @Resolver(of => User)
 @Resolver()
 export class RegisterResolver {
 	// @FieldResolver()
@@ -14,7 +16,7 @@ export class RegisterResolver {
 	// 	return `${parent.firstName} ${parent.lastName}`
 	// }
 
-	@Mutation(returns => RegisterResponse, { description: 'Register reasonably', nullable: true })
+	@Mutation(() => RegisterResponse, { description: 'Register reasonably', nullable: true })
 	@UseMiddleware(rateLimit()) // add rate-limiting to prevent spamming, keep track of that person's ip
 	async register(
 		@Arg('data', { validate: true }) { firstName, lastName, email, password }: RegisterInput,

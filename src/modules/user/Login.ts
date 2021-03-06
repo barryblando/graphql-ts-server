@@ -1,17 +1,17 @@
 import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
 import { User } from '../../entity/User'
-import { MyContext } from '../../types/MyContext'
+import { IContext } from '../../types/MyContext'
 import { LoginResponse } from '../../graphql-types/LoginResponse'
 import { createAccessToken, createRefreshToken } from '../../utils/authToken'
 import { sendRefreshToken } from '../../utils/sendRefreshToken'
 
 @Resolver()
 export class LoginResolver {
-	@Mutation(returns => LoginResponse)
+	@Mutation(() => LoginResponse)
 	async login(
 		@Arg('email') email: string,
 		@Arg('password') password: string,
-		@Ctx() { res }: MyContext,
+		@Ctx() { res }: IContext,
 	): Promise<LoginResponse> {
 		const user = await User.findOne({ where: { email } })
 

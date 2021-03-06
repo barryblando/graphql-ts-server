@@ -17,7 +17,7 @@ export class FileUploadResolver {
 			readableStreams[0] = files
 		}
 
-		const pipeStreams = readableStreams.map(async readStreamInstance => {
+		const pipeStreams = readableStreams.map(async (readStreamInstance) => {
 			const { filename, createReadStream } = readStreamInstance
 			const writableStream = createWriteStream(path.join(__dirname, '../../../images', filename), { autoClose: true })
 			return await new Promise<boolean>((resolve, reject) =>
