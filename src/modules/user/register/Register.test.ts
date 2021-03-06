@@ -35,8 +35,8 @@ describe('Register', () => {
 			variableValues: {
 				data: user,
 			},
-		}).then(async response => {
-			const dbUser = await User.findOne({ where: { email: response.data.email } })
+		}).then(async (response) => {
+			const dbUser = await User.findOne({ where: { email: response.data?.email } })
 
 			expect(response).toMatchObject({
 				data: {
@@ -49,7 +49,7 @@ describe('Register', () => {
 			})
 
 			expect(dbUser).toBeDefined()
-			expect(dbUser.confirmed).toBeFalsy() // make sure user is not confirm
+			expect(dbUser?.confirmed).toBeFalsy() // make sure user is not confirm
 		})
 	})
 })

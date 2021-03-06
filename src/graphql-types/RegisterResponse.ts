@@ -4,7 +4,7 @@ import { IResponse } from './interfaces/Response'
 
 @ObjectType({ implements: IResponse })
 export class RegisterResponse implements IResponse {
-	user?: User
+	user?: User | undefined
 
 	@Field(() => String)
 	messageId: string

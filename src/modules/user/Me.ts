@@ -11,6 +11,7 @@ export class MeResolver {
 		// if (!ctx.req.session.userId) {
 
 		const user = await User.findOne({ where: { id: payload.userId } })
-		return user
+
+		return user!
 	}
 }

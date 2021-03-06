@@ -16,14 +16,14 @@ export class RegisterResolver {
 	// 	return `${parent.firstName} ${parent.lastName}`
 	// }
 
-	@Mutation(() => RegisterResponse, { description: 'Register reasonably', nullable: true })
+	@Mutation(() => RegisterResponse, { description: 'register reasonably', nullable: true })
 	@UseMiddleware(rateLimit()) // add rate-limiting to prevent spamming, keep track of that person's ip
 	async register(
 		@Arg('data', { validate: true }) { firstName, lastName, email, password }: RegisterInput,
 	): Promise<RegisterResponse> {
 		// const hashedPassword = await bcrypt.hash(password, 12)
-		let user: User
-		let confirmationResponse
+		let user
+		let confirmationResponse: RegisterResponse
 
 		try {
 			user = await User.create({
@@ -38,6 +38,6 @@ export class RegisterResolver {
 			console.log(err)
 		}
 
-		return { user, ...confirmationResponse }
+		return { user, ...confirmationResponse! }
 	}
 }
