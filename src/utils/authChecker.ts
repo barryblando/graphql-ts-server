@@ -11,7 +11,7 @@ export const authChecker: AuthChecker<IContext> = async ({ context }, roles): Pr
 	}
 
 	const token = authorization.split(' ')[1]
-	const payload = verify(token, process.env.ACCESS_TOKEN_SECRET) as { userId: string }
+	const payload = verify(token, process.env.ACCESS_TOKEN_SECRET!) as { userId: string }
 
 	if (roles.length === 0) {
 		// if `@Authorized() roles empty`, check is user exist
@@ -29,6 +29,11 @@ export const authChecker: AuthChecker<IContext> = async ({ context }, roles): Pr
 	// get the user
 	// const user = await User.findOne(req.session.userId) - session
 	const user = await User.findOne(payload.userId)
+
+	if (!user) {
+		throw new Error('User not found')
+	}
+
 	// and check his permission in db against `roles` argument
 	const matchRoles = user.roles.filter((roleUserHave) => roles.includes(roleUserHave))
 

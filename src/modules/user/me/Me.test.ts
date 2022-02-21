@@ -35,7 +35,7 @@ describe('Me', () => {
 		gCall({
 			source: meQuery,
 			accessToken: createAccessToken(user),
-		}).then(async response => {
+		}).then(async (response) => {
 			expect(response).toMatchObject({
 				data: {
 					me: {
@@ -52,7 +52,7 @@ describe('Me', () => {
 	it('return null', async () => {
 		gCall({
 			source: meQuery,
-		}).then(async response => {
+		}).then(async (response) => {
 			expect(response).toMatchObject({
 				data: {
 					me: null,

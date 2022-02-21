@@ -1,7 +1,7 @@
-import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
+import { Resolver, Mutation, Arg } from 'type-graphql'
 import { v4 as uuid } from 'uuid'
 import { User } from '../../entity/User'
-import { IContext } from '../../types/MyContext'
+// import { IContext } from '../../types/MyContext'
 import { redis } from '../../redis'
 import { sendEmail } from '../../utils/sendEmail'
 import { forgotPasswordPrefix } from '../../constants'
@@ -9,7 +9,8 @@ import { forgotPasswordPrefix } from '../../constants'
 @Resolver()
 export class ForgotPasswordResolver {
 	@Mutation(() => Boolean)
-	async forgotPassword(@Arg('email') email: string, @Ctx() ctx: IContext): Promise<boolean> {
+	// async forgotPassword(@Arg('email') email: string, @Ctx() ctx: IContext): Promise<boolean> {
+	async forgotPassword(@Arg('email') email: string): Promise<boolean> {
 		const user = await User.findOne({ where: { email } })
 		if (!user) throw new Error("Email address doesn't exist")
 

@@ -98,6 +98,7 @@ const startServer = async (): Promise<void> => {
 	})
 
 	let retries = 5
+
 	while (retries) {
 		try {
 			await createConnection(typeOrmConfig)
