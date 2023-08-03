@@ -51,7 +51,7 @@
     "apollo-server": "^2.25.3",
     "apollo-server-express": "^2.25.3",
     "bcryptjs": "^2.4.3",
-    "class-validator": "^0.13.2",
+    "class-validator": "^0.14.0",
     "connect-redis": "^5.2.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
